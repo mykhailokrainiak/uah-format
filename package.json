@@ -1,0 +1,29 @@
+{
+  "name": "@mykhailokrainiak/uah-format",
+  "version": "1.0.0",
+  "description": "Форматування сум у гривнях та українські форми множини",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "keywords": [
+    "uah",
+    "hryvnia",
+    "format",
+    "plural",
+    "ukrainian"
+  ],
+  "author": "Mykhailo Krainiak",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mykhailokrainiak/uah-format.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

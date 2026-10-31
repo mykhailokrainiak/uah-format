@@ -30,4 +30,19 @@ function plural(n, forms) {
   return forms[2];
 }
 
-module.exports = { formatUAH, plural };
+/**
+ * Скорочений запис великих сум: 1500000 -> "1,5 млн грн"
+ * @param {number} amount
+ */
+function formatUAHShort(amount) {
+  const units = [[1e9, 'млрд'], [1e6, 'млн'], [1e3, 'тис.']];
+  for (const [value, name] of units) {
+    if (Math.abs(amount) >= value) {
+      const short = Math.round((amount / value) * 10) / 10;
+      return `${String(short).replace('.', ',')} ${name} грн`;
+    }
+  }
+  return formatUAH(amount);
+}
+
+module.exports = { formatUAH, formatUAHShort, plural };

@@ -1,6 +1,6 @@
 {
   "name": "@mykhailokrainiak/uah-format",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Форматування сум у гривнях та українські форми множини",
   "main": "index.js",
   "scripts": {

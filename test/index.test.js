@@ -22,6 +22,7 @@ test('plural обирає правильну форму', () => {
   assert.strictEqual(plural(11, forms), 'файлів');
   assert.strictEqual(plural(22, forms), 'файли');
   assert.strictEqual(plural(101, forms), 'файл');
+  assert.strictEqual(plural(1.5, ['гривня', 'гривні', 'гривень']), 'гривні');
 });
 
 test('formatUAHShort скорочує великі суми', () => {

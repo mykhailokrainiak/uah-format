@@ -22,6 +22,7 @@ function formatUAH(amount, options = {}) {
  * @param {[string, string, string]} forms
  */
 function plural(n, forms) {
+  if (!Number.isInteger(n)) return forms[1]; // 1,5 гривні, 2,5 файли
   const a = Math.abs(n) % 100;
   const b = a % 10;
   if (a > 10 && a < 20) return forms[2];

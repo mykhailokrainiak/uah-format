@@ -1,5 +1,8 @@
 'use strict';
 
+// нерозривний пробіл: розряди та "грн" не переносяться на інший рядок
+const NBSP = ' ';
+
 /**
  * Форматує суму в гривнях: 1234.5 -> "1 234,50 грн"
  * @param {number} amount
@@ -11,9 +14,9 @@ function formatUAH(amount, options = {}) {
   }
   const sign = amount < 0 ? '-' : '';
   const [int, frac] = Math.abs(amount).toFixed(2).split('.');
-  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
   const currency = options.symbol ? '₴' : 'грн';
-  return `${sign}${grouped},${frac} ${currency}`;
+  return `${sign}${grouped},${frac}${NBSP}${currency}`;
 }
 
 /**
@@ -40,10 +43,10 @@ function formatUAHShort(amount) {
   for (const [value, name] of units) {
     if (Math.abs(amount) >= value) {
       const short = Math.round((amount / value) * 10) / 10;
-      return `${String(short).replace('.', ',')} ${name} грн`;
+      return `${String(short).replace('.', ',')} ${name}${NBSP}грн`;
     }
   }
   return formatUAH(amount);
 }
 
-module.exports = { formatUAH, formatUAHShort, plural };
+module.exports = { formatUAH, formatUAHShort, plural, NBSP };

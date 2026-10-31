@@ -1,12 +1,12 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert');
-const { formatUAH, formatUAHShort, plural } = require('..');
+const { formatUAH, formatUAHShort, plural, NBSP } = require('..');
 
 test('formatUAH групує розряди та додає валюту', () => {
-  assert.strictEqual(formatUAH(1234.5), '1 234,50 грн');
-  assert.strictEqual(formatUAH(-99), '-99,00 грн');
-  assert.strictEqual(formatUAH(1000000, { symbol: true }), '1 000 000,00 ₴');
+  assert.strictEqual(formatUAH(1234.5), `1${NBSP}234,50${NBSP}грн`);
+  assert.strictEqual(formatUAH(-99), `-99,00${NBSP}грн`);
+  assert.strictEqual(formatUAH(1000000, { symbol: true }), `1${NBSP}000${NBSP}000,00${NBSP}₴`);
 });
 
 test('formatUAH відхиляє некоректні значення', () => {
@@ -26,7 +26,7 @@ test('plural обирає правильну форму', () => {
 });
 
 test('formatUAHShort скорочує великі суми', () => {
-  assert.strictEqual(formatUAHShort(1500000), '1,5 млн грн');
-  assert.strictEqual(formatUAHShort(2300), '2,3 тис. грн');
-  assert.strictEqual(formatUAHShort(950), '950,00 грн');
+  assert.strictEqual(formatUAHShort(1500000), `1,5 млн${NBSP}грн`);
+  assert.strictEqual(formatUAHShort(2300), `2,3 тис.${NBSP}грн`);
+  assert.strictEqual(formatUAHShort(950), `950,00${NBSP}грн`);
 });

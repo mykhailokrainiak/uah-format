@@ -3,6 +3,10 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { formatUAH, formatUAHShort, plural, NBSP } = require('..');
 
+test('NBSP — це нерозривний пробіл', () => {
+  assert.strictEqual(NBSP, '\u00A0');
+});
+
 test('formatUAH групує розряди та додає валюту', () => {
   assert.strictEqual(formatUAH(1234.5), `1${NBSP}234,50${NBSP}грн`);
   assert.strictEqual(formatUAH(-99), `-99,00${NBSP}грн`);
